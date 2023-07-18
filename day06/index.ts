@@ -66,7 +66,7 @@ type Task = { color: string; size: number; readonly position: number[] };
 let task = {
   color: "안녕",
   size: 20,
-  position: [1, 2, 3],
+  position: [1, 2],
 };
 
 // task = {

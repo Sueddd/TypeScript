@@ -10,10 +10,10 @@
 // 그래서 이 타입을 확정시켜주기 위해 narrow 사용
 
 // 수정
-// function 함수 (x: number | string) : void{
-//     if(x:number){
-//         console.log(x + 2);
-//     }
+// function 함수(x: number | string) {
+//   if (typeof x === "number") {
+//     return x + 1;
+//   }
 // }
 
 // x는 타입이 애매해서 사전에 에러가 간다.
@@ -53,15 +53,13 @@ function 내함수2(x: number | string) {
 // 타입을 잠깐 덮어씌우기
 function 내함수3(x: number | string) {
   let array: number[] = [];
-  // x as number > 왼쪽에 있는 x를 number로 덮어 씌워달라는 뜻 
+  // x as number > 왼쪽에 있는 x를 number로 덮어 씌워달라는 뜻
   array[0] = x as number;
 }
 
-
-// as 문법의 용도 
-// 1. Narrowing 할 때 쓴다. 
-// 2. 타입을 단순히 a에 b로 변경할 때 사용하진 않는다. 
+// as 문법의 용도
+// 1. Narrowing 할 때 쓴다.
+// 2. 타입을 단순히 a에 b로 변경할 때 사용하진 않는다.
 // ex) let 이름 : string = 'kim';
-// 이름 as number;                  
-// >> 이름의 타입이 정확하게 지정되어 있는 상태에서 as 문법으로 변경은 불가능 
-
+// 이름 as number;
+// >> 이름의 타입이 정확하게 지정되어 있는 상태에서 as 문법으로 변경은 불가능

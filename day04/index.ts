@@ -26,9 +26,6 @@ const object: { a?: number } = {};
 // 결국 ?는 undefined을 나타내는 ?
 
 function ex(x: number | undefined): void {}
-
-
-
 // void는 return할 자료가 없는 함수의 타입으로 사용가능
 // 숙제 1.
 

@@ -1,7 +1,6 @@
 {
   // Array
   const fruits: string[] = ["strawberry", "banana"];
-  // Array라는 object 타입에 number타입
   const scores: Array<number> = [1, 2, 3];
 
   // 타입 고정 > 변경 불가

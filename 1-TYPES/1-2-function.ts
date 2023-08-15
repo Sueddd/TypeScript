@@ -4,22 +4,22 @@
   //     return num1 + num2;
   //   }
 
-  //   // TypeScript
-  //   function add(num1: number, num2: number): number {
-  //     return num1 + num2;
-  //   }
+    // TypeScript
+    function add(num1: number, num2: number): number {
+      return num1 + num2;
+    }
 
-  //   // 무언가를 fetch를 해서 어떤 코드가 발생하다가 프로미스를 리턴하는 함수
-  //   // 리턴값은 Promise이고, 프로미스 중에서도 number를 리턴하니까
-  //   // : Promise<number> 라고 적어준다.
-  //   // 프로미스는 fetch가 완료된 다음에 숫자의 데이터를 리턴하는구나 라고 생각하면 된다.
-  //   function jsFetchNum(id: string): Promise<number> {
-  //     // code ...
-  //     // code ...
-  //     return new Promise((resolve, reject) => {
-  //       resolve(100);
-  //     });
-  //   }
+    // 무언가를 fetch를 해서 어떤 코드가 발생하다가 프로미스를 리턴하는 함수
+    // 리턴값은 Promise이고, 프로미스 중에서도 number를 리턴하니까
+    // : Promise<number> 라고 적어준다.
+    // 프로미스는 fetch가 완료된 다음에 숫자의 데이터를 리턴하는구나 라고 생각하면 된다.
+    function jsFetchNum(id: string): Promise<number> {
+      // code ...
+      // code ...
+      return new Promise((resolve, reject) => {
+        resolve(100);
+      });
+    }
 
   // JavaScript => TypeScript
   // Optional prameter > ?를 작성하면 된다. 

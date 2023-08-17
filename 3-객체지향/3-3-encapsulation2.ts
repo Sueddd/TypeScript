@@ -49,48 +49,43 @@
   //   maker.coffeeBeans = 3;
   //   maker.coffeeBeans = -34; // 외부에서 내부의 상태를 유효하지 않은 상태로 만들 수 있음
 
+  // 편리하게 쓸 수 있게
   class User {
-    firstName: string;
-    lastName: string;
-    // fullName: string;
+    // ----
+    // 멤버변수 선언 사라짐
+    // -------
 
-    // get을 이용한 fullName 정의, fullName에 접근할 때마다 새로운 데이터를 만들고 개선이 가능 => fullName을 호출한 시점에 firstName과 lastName을 결합할 수 있음
-    // 이는 함수이지만, 접근할 때는 함수가 아니라 멤버 변수에 접근하는 것처럼 해야한다.
-    get fullName(): string{
+    get fullName(): string {
       return `${this.firstName} ${this.lastName}`;
     }
 
-    constructor(firstName: string, lastName: string) {
-      this.firstName = firstName;
-      this.lastName = lastName;
-      // this.fullName = `${firstName} ${lastName}`;
+    private internalAge = 4;
+
+    // make(num: number) {
+    //   this.internalAge = num;
+    //   return this.internalAge;
+    // }
+
+    get age(): number {
+      return this.internalAge;
     }
+
+    // set을 이용해 age는 어떠한 숫자를 받아온다.
+    // this.internalAge를 전달 받은 숫자로 사용할 수 있다.
+    set age(num: number) {
+      this.internalAge = num;
+    }
+
+    // 생성자에 접근 제어자(private)를 붙히면 바로 멤버 변수로 설정된다.
+    // 이 firstName에 전달되어 온 것이 this.firstName으로 설정되고, lastName에 전달되어 온 것이 this.lastName으로 설정된다. 
+    constructor(private firstName: string, private lastName: string) {}
   }
   const user = new User("Steve", "Jobs");
-  console.log(user.fullName); // Steve Jobs
-  user.firstName = "Ellie";
-  console.log(user.fullName); 
-  // Steve Jobs => fullName에 firstName과 lastName이 한 번 할당되면 계속 이렇게 지정되기 때문에 firstName을 바꾼다고 해서 변하지 않음.
+  //   console.log(user.fullName); // Steve Jobs
+  //   user.firstName = "Ellie";
+  //   console.log(user.fullName);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  // age라는 게터를 사용 => 게터와 세터를 이용하면 다양한 연산 가능
+  // 전달된 숫자가 정확한지에 대해서 유효성 검사를 할 수 있음 
+  user.age = 6;
 }

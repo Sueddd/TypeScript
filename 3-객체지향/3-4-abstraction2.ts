@@ -79,6 +79,7 @@
   }
 
   // 커피만 만들 수 있는 클래스
+  // implements로 인터페이스를 받아올 수는 없나? => 그럼 이 클래스에 인터페이스에 있는 함수 다 구현해 줘야함
   class AmateurUser {
     // CoffeeMaker라는 인터페이스만 받아올 수 있다.
     constructor(private machine: CoffeeMaker) {}
@@ -91,6 +92,7 @@
   // 더 많은 기능을 할 수 있음
   class ProBarista {
     // CommercialCoffeeMaker라는 인터페이스를 받아올 수 있다.
+    // 생성자에서 받아오는 것, 클래스보다는 조금 더 좁은
     constructor(private machine: CommercialCoffeeMaker) {}
     makeCoffee() {
       const coffee = this.machine.makeCoffee(3);
@@ -100,13 +102,14 @@
     }
   }
 
-  const maker: CoffeeMaker = CoffeeMachine.makeMachine(32);
-  maker.makeCoffee(2);
+  const maker: CoffeeMachine = CoffeeMachine.makeMachine(32);
 
-  const maker2: CommercialCoffeeMaker = CoffeeMachine.makeMachine(32);
-  maker2.fillCoffeeBeans(32);
-  maker2.makeCoffee(2);
-  maker2.clean();
+  // 두 클래스에 모두 동일한 maker라는 object 전달 > 같은 커피머신을 쓰고 있다고 볼 수 있음
+  // 커피머신 인스턴스를 만들수 있음
+  const amateur = new AmateurUser(maker);
+  const pro = new ProBarista(maker);
+  amateur.makeCoffe();
+  pro.makeCoffee();
 
   // 만약 생성자에 private이 안 걸려 있으면 이렇게 만들 수도 있음
   // const maker5:CommercialCoffeeMaker = new CoffeeMachine(5);

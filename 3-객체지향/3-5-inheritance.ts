@@ -12,23 +12,11 @@
     // makeCoffee에 shots을 넣어주면 CoffeeCup을 반환받을 수 있따.
     makeCoffee(shots: number): CoffeeCup;
   }
-
-  // 조금 더 상업적으로 이용되는 인터페이스
-  interface CommercialCoffeeMaker {
-    makeCoffee(shots: number): CoffeeCup;
-    fillCoffeeBeans(beans: number): void;
-    clean(): void;
-  }
-
-  // 클래스 이름을 변경
-  // 이 클래스는 인터페이스 규격을 따라간다.
-  // 클래스 CoffeMachine을 인터페이스 CoffeeMaker를 만드는 애
-  // 클래스에서는 인터페이스에서 규약된 함수를 모두 만들어야 한다.
-  class CoffeeMachine implements CoffeeMaker, CommercialCoffeeMaker {
+  class CoffeeMachine implements CoffeeMaker {
     private static BEANS_GRAMM_PER_SHOT: number = 7; // class level
     private coffeeBeans: number = 0; // instance (object) level
 
-    private constructor(coffeeBeans: number) {
+    constructor(coffeeBeans: number) {
       this.coffeeBeans = coffeeBeans;
     }
 
@@ -78,37 +66,41 @@
     }
   }
 
-  // 커피만 만들 수 있는 클래스
-  class AmateurUser {
-    // CoffeeMaker라는 인터페이스만 받아올 수 있다.
-    constructor(private machine: CoffeeMaker) {}
-    makeCoffe() {
-      const coffee = this.machine.makeCoffee(3);
-      console.log(coffee);
+  // CoffeeMachine 상속 => 생성자가 private이면 상속을 못함 => public으로 변경 or 상속하는 자식에서는 변경가능한 protected 사용
+  class CaffeLatteMachine extends CoffeeMachine {
+    // 만약 자식클래스에서 또다른 데이터를 생성자에서 받아올 수 있다면
+    // 자식 클래스에서 생성자는 꼭 super를 붙혀야 한다. => 부모의 생성자를 호출해 줘야함
+    // 부모 클래스의 생성자 coffeeBeans를 전달해야함 => beans: number 이렇게 전달
+    // serailNumber는 자식 클래스에서 새롭게 만든 생성자 데이터
+    constructor(beans: number, public serialNumber: string) {
+      // 부모 클래스의 생성자 전달
+      super(beans);
+    }
+
+    // 우유 끓이기 => 내부에만 있는 함수라 private
+    private steamMilk(): void {
+      console.log("Steaming some milk ...🥛");
+    }
+    // 자식 클래스에서 부모 클래스에 있는 함수를 덮어 씌울 수 있음 => overwriting
+    makeCoffee(shots: number): CoffeeCup {
+      // super를 붙혀서 부모 클래스의 함수 호출
+      const coffee = super.makeCoffee(shots);
+      this.steamMilk();
+      return {
+        // coffee는 그래도, hasMilk : true로 덮어씌우기
+        ...coffee,
+        hasMilk: true,
+      };
     }
   }
 
-  // 더 많은 기능을 할 수 있음
-  class ProBarista {
-    // CommercialCoffeeMaker라는 인터페이스를 받아올 수 있다.
-    constructor(private machine: CommercialCoffeeMaker) {}
-    makeCoffee() {
-      const coffee = this.machine.makeCoffee(3);
-      console.log(coffee);
-      this.machine.fillCoffeeBeans(45);
-      this.machine.clean();
-    }
-  }
+  const machine = new CoffeeMachine(23);
 
-  const maker: CoffeeMaker = CoffeeMachine.makeMachine(32);
-  maker.makeCoffee(2);
+  // 두개를 전달해 줘야함
+  const latteMachine = new CaffeLatteMachine(23, "sss");
 
-  const maker2: CommercialCoffeeMaker = CoffeeMachine.makeMachine(32);
-  maker2.fillCoffeeBeans(32);
-  maker2.makeCoffee(2);
-  maker2.clean();
-
-  // 만약 생성자에 private이 안 걸려 있으면 이렇게 만들 수도 있음
-  // const maker5:CommercialCoffeeMaker = new CoffeeMachine(5);
-  // maker5.clean();
+  // CoffeeMachine을 사용해서 이 안의 함수 모두 사용가능
+  const coffee = latteMachine.makeCoffee(1);
+  console.log(coffee); // 커피 하나 만들어짐
+  console.log(latteMachine.serialNumber);
 }

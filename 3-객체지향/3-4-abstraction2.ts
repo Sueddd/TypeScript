@@ -28,7 +28,7 @@
     private static BEANS_GRAMM_PER_SHOT: number = 7; // class level
     private coffeeBeans: number = 0; // instance (object) level
 
-    private constructor(coffeeBeans: number) {
+    constructor(coffeeBeans: number) {
       this.coffeeBeans = coffeeBeans;
     }
 
@@ -103,7 +103,7 @@
   }
 
   const maker: CoffeeMachine = CoffeeMachine.makeMachine(32);
-
+  // const maker5: CoffeeMachine = new CoffeeMachine(5);
   // 두 클래스에 모두 동일한 maker라는 object 전달 > 같은 커피머신을 쓰고 있다고 볼 수 있음
   // 커피머신 인스턴스를 만들수 있음
   const amateur = new AmateurUser(maker);

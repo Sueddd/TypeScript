@@ -108,19 +108,19 @@
     }
   }
 
-  //   const machine = new CoffeeMachine(23);
+  const machine = new CoffeeMachine(23);
 
-  //   // 두개를 전달해 줘야함
-  //   const latteMachine = new CaffeLatteMachine(23, "sss");
+  // 두개를 전달해 줘야함
+  const latteMachine = new CaffeLatteMachine(23, "sss");
 
-  //   // CoffeeMachine을 사용해서 이 안의 함수 모두 사용가능
-  //   const coffee = latteMachine.makeCoffee(1);
-  //   console.log(coffee); // 커피 하나 만들어짐
-  //   console.log(latteMachine.serialNumber);
+  // CoffeeMachine을 사용해서 이 안의 함수 모두 사용가능
+  const coffee = latteMachine.makeCoffee(1);
+  console.log(coffee); // 커피 하나 만들어짐
+  console.log(latteMachine.serialNumber);
 
-  //   const sweetCoffee = new SweetCoffeeMaker(23);
-  //   const sweet = sweetCoffee.makeCoffee(3);
-  //   console.log(sweet);
+  const sweetCoffee = new SweetCoffeeMaker(23);
+  const sweet = sweetCoffee.makeCoffee(3);
+  console.log(sweet);
 
   // 다형성의 장점 = 다형성을 이용하면 한가지의 클래스나 인터페이스를 통해
   // 다른 클래스를 생성할 수 있음

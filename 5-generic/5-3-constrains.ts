@@ -45,3 +45,27 @@ const bobAfterPay = pay(bob);
 const ellieAfterPay2 = payBad(ellie);
 const bobAfterPay2 = payBad(bob);
 
+const obj = {
+  name: "ellie",
+  age: 20,
+};
+
+const obj2 = {
+  animal: "🐕",
+};
+
+// console.log(getValue(obj, "name")); // ellie
+// // getValue라는 함수에 obj이름과 키를 전달하면 값을 보여주는
+// console.log(getValue(obj, "age")); // 20
+
+// function getValue<T extends object>(name: T, key: string): string {
+//   return name[key];
+// }
+// console.log(getValue(obj, "name"));
+
+// keyof => object안에 들어있는 키의 값 => object 키의 값중 하나라는 뜻
+// T[K] => T라는 object중 K라는 키의 값을 말함
+function getValue<T, K extends keyof T>(obj: T, key: K): T[K] {
+  return obj[key];
+}
+console.log(getValue(obj, "name"));

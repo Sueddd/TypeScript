@@ -26,11 +26,11 @@ class PartTimeEmployee2 implements Employee {
 // 그래서 employee.pay를 하면 오류가 나옴
 // employee에 pay가 있는지 없는에 대한 정보 없음
 // 세부적인 조건 > T extends Employee
-function pay2<T>(employee: T): T {
+function pay2<T extends Employee>(employee: T): T {
   employee.pay();
   return employee;
 }
- 
+
 const ellie2 = new FullTimeEmployee2();
 const bob2 = new PartTimeEmployee2();
 // console.log(ellie2);

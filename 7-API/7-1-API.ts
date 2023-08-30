@@ -25,3 +25,4 @@ class Cat extends Animal {
 class Dog extends Animal {
   isDog: boolean = false;
 }
+

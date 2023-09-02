@@ -1,3 +1,9 @@
+// TimeoutError라는 클래스는 Error라는 클래스 상속
+// 그렇기 때문에 NetworkClient는 타임 아웃이 될 수도 있고 오프라인이 될 수도 있다.
+// 에러가 난 종류에 맞게 세부적인 클래스를 던질 것이다.
+class TimeoutError extends Error {}
+class OfflineError extends Error {}
+
 class NetworkClient {
   tryConnect(): void {
     throw new Error("no network!");
@@ -24,8 +30,11 @@ class App {
     try {
       this.userService.login();
     } catch (error) {
-      // 여기서 처리하는 게 의미있는 일을 할 수 있음
-      // show dialog to user
+      // catch에 전달되는 에러는 any 타입이다.
+      // 그래서 여기에서는 any 타입이기 때문에 여기서는 instanceof를 사용 불가
+      // if (error instanceof OfflineError) {
+      //   // error라는 object가 OfflineError라는 클래스의 인스턴스 라면,
+      // }
     }
   }
 }

@@ -12,7 +12,6 @@
   checkNotNullBad(null);
 
   // 자바스크립트 쿼리셀렉터에서 요소가 리턴될수도, null이 리턴될 수도
-  //
 
   // 타입이 any이게
   function checkNotNullAnyBad(arg: any | null): any {

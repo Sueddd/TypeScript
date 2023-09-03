@@ -30,7 +30,7 @@ const obj2: PositionInterface = {
   z: 1,
 };
 
-// class ⭐
+// class ⭐ => 타입과 인터페이스 모두 클래스에서 구현 가능
 // Pos1이라는 클래스는 PostitionType을 구현
 class Pos1 implements PositionType {
   x: number;
@@ -44,7 +44,7 @@ class Pos2 implements PositionInterface {
   z: number;
 }
 
-// Extends
+// Extends => 확장도 가능
 // 기존 인터페이스(PositionInterface) 확장
 interface ZPositionInterface extends PositionInterface {
   z: number;
@@ -53,12 +53,12 @@ interface ZPositionInterface extends PositionInterface {
 // 기존 type alias에 {z : number}를 추가
 type ZPositionType = PositionType & { z: number };
 
-// ⭐ only interfaces can be merged.
+// ⭐ only interfaces can be merged. => 인터페이스만 결합이 가능
 interface PositionInterface {
   z: number;
 }
 
-// 중복되는 타입은 사용 불가 > 인터페이스만 가능
+// 중복되는 타입(결합)은 사용 불가 > 인터페이스만 가능
 // type PositionType {
 
 // }
@@ -73,4 +73,8 @@ type Person = {
 // Name은 string 타입이 된다
 type Name = Person["name"]; // string
 
-// type alias와 interface는 언뜻보면 비슷해 보이겠지만, 다른 점이 많다. 
+// type alias와 interface는 언뜻보면 비슷해 보이겠지만, 다른 점이 많다.
+
+// 유니온 타입은 인터페이스로는 절대 구현하지 못한다.
+type NumberType = number;
+type Direction = "left " | "right";

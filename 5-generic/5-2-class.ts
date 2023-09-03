@@ -22,4 +22,4 @@ const either: Either<number, number> = new SimpleEither(4, 5);
 either.left(); // 4
 either.right(); // 5
 // 이렇게 각기 다른 타입을 줄 수 있다.
-const best = new SimpleEither({ name: "sue" }, "hello");
+const best: Either<object, string> = new SimpleEither({ name: "sue" }, "hello");

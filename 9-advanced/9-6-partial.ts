@@ -20,3 +20,13 @@
   const updated = updateTodo(todo, { label: "hard", priority: "low" });
   console.log(updated);
 }
+type ToDo = {
+  title: string;
+  description: string;
+};
+
+// utility type으로 정의된 Readonly 사용
+function display(todo: Readonly<ToDo>) {
+  // Readonly로 설정해서 수정이 불가능하게 된다.
+  todo.title = "jaja"; // 💩 error
+}
